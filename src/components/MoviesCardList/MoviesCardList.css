@@ -1,0 +1,15 @@
+.MoviesCardList {
+  padding: 15px 70px;
+}
+
+.MoviesCardList__cardlist-container {
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  min-height: calc(100vh - 100px)
+}
+
+.MoviesCardList__cardlist-container_saved {
+    min-height: calc(60vh - 100px)
+}

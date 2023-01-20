@@ -22,6 +22,11 @@
   border-bottom: 1px solid #e8e8e8;
   display: flex;
   justify-content: space-between;
+  transition: linear .3s;
+}
+
+.Portfolio__link:hover {
+  opacity: .7;
 }
 
 .Portfolio__link:last-child {

@@ -73,6 +73,7 @@
   border-radius: 50%;
   background-color: #484848; 
   transform: translate(0);
+  transition: linear .3s;
 }
 
 .SearchForm__input:checked + .SearchForm__container {
