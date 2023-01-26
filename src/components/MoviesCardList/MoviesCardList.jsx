@@ -15,7 +15,7 @@ function MoviesCardList () {
             <MovieCard />
             <MovieCard />
           </div>
-          <button className='MovesCardList__more-button'>Еще</button>
+          <button className='MoviesCardList__more-button'>Еще</button>
         </section>
       </Route>
       <Route exact path='/saved-movies'>

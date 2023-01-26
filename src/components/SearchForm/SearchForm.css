@@ -12,7 +12,7 @@
 }
 
 .SearchForm__search-input {
-  width: 1086px;
+  width: 95%;
   height: 50px;
   background-color: #f9f9f9;
   border: none;
@@ -33,8 +33,8 @@
   background-color: #3456f3;
   border: none;
   border-radius: 8px;
-  width: 44px;
-  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
   margin: auto 0;
 }
 
@@ -88,3 +88,19 @@
 .SearchForm__subtitle {
     padding-left: 12px;
 }
+
+@media screen and (max-width: 768px) {
+  .SearchForm {
+    max-width: 768px;
+    height: 240px;
+    padding: 0 30px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .SearchForm {
+    height: 240px;
+    padding: 0 14px;
+  }
+}
+

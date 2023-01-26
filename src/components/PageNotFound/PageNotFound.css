@@ -1,34 +1,55 @@
 .PageNotFound {
-margin: 0 auto;
-text-align: center;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .PageNotFound__title {
-    font-size: 140px;
-    font-weight: 400;
-    line-height: 1.2;
-    margin: 246px 0 0;
+  font-size: 140px;
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 246px 0 0;
 }
 
 .PageNotFound__subtitle {
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 1.2;
-    margin: 5px 0 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 5px 0 0;
 }
 
 .PageNotFound__button {
-    border: none;
-    background-color: inherit;
-    cursor: pointer;
-    color: #3456F3;
-    transition: linear .3s;
-    margin: 184px 0 0;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.2;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+  color: #3456f3;
+  transition: linear 0.3s;
+  margin: 184px 0 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.2;
 }
 
 .PageNotFound__button:hover {
-    opacity: .7;
+  opacity: 0.7;
+}
+
+@media screen and (max-width: 768px) {
+  .PageNotFound__title {
+    margin-top: 408px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .PageNotFound__title {
+    font-size: 80px;
+    margin-top: 329px;
+  }
+  .PageNotFound__subtitle {
+    font-size: 12px;
+    margin-top: 10px;
+  }
+  .PageNotFound__button {
+    font-size: 12px;
+    margin-top: 284px;
+  }
 }

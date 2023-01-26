@@ -25,7 +25,7 @@
 }
 
 .Profile__input-box:first-child {
-    border-bottom: 1px solid #e8e8e8;
+  border-bottom: 1px solid #e8e8e8;
 }
 
 .Profile__label {
@@ -76,4 +76,29 @@
   line-height: 1.2;
   margin-top: 16px;
   text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .Profile__title {
+    padding-top: 254px;
+    padding-bottom: 80px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .Profile {
+    max-width: 260px;
+  }
+  .Profile__edit-button {
+    font-size: 12px;
+    margin-top: 379px;
+  }
+
+  .Profile__logout {
+    font-size: 12px;
+  }
+
+  .Profile__title {
+    padding-top: 96px;
+  }
 }

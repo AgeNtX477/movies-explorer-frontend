@@ -15,7 +15,7 @@ function Login () {
           Пароль
         </label>
         <input type='password' required className='Login__input'></input>
-        <span required className='Login__span'></span>
+        <span required className='Login__span'>Что-то пошло не так</span>
         <button type='submit' className='Login__button'>
           Войти
         </button>
