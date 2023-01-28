@@ -6,6 +6,7 @@ function SearchForm () {
     <section className='SearchForm'>
       <form className='SearchForm__form'>
         <input
+          required
           type='input'
           placeholder='Фильмы'
           className='SearchForm__search-input'
@@ -15,9 +16,11 @@ function SearchForm () {
         </button>
       </form>
       <fieldset className='SearchForm__checkbox'>
-        <input type='checkbox' className='SearchForm__input' id='switch'/>
+        <input type='checkbox' className='SearchForm__input' id='switch' />
         <label htmlFor='switch' className='SearchForm__container'></label>
-        <label htmlFor='switch' className='SearchForm__subtitle'>Короткометражки</label>
+        <label htmlFor='switch' className='SearchForm__subtitle'>
+          Короткометражки
+        </label>
       </fieldset>
     </section>
   )

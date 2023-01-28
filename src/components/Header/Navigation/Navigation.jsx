@@ -115,14 +115,12 @@ function handleDropMenuToggle () {
         <Link onClick={handleDropMenuToggle} to='/' className='Navigation__dropdown-link'>Главная</Link>
         <Link onClick={handleDropMenuToggle} to='/movies' className='Navigation__dropdown-link'>Фильмы</Link>
         <Link onClick={handleDropMenuToggle} to='/saved-movies' className='Navigation__dropdown-link'>Сохраненные фильмы</Link>
-        <Link onClick={handleDropMenuToggle} className='Navigation__profile-link' to='/profile'>
-          <button type='button'className='Navigation__dropdown-close'><img src={closelogo} alt='close_logo'></img></button>
-              <div className='Navigation__profile-container Navigation__profile-container_place_dropdown'>
+          <button onClick={handleDropMenuToggle} type='button' className='Navigation__dropdown-close'><img src={closelogo} alt='close_logo'></img></button>
+              <Link onClick={handleDropMenuToggle} to='/profile'className='Navigation__profile-container Navigation__profile-container_place_dropdown'>
                 <img className='Navigation__profile-logo1' src={accountlogo} alt='Логотип-Профиля' />
                 <img className='Navigation__profile-logo2' src={accountlogo2} alt='Логотип-Профиля' />
                 <p className='Navigation__profile-acc'>Аккаунт</p>
-              </div>
-            </Link>
+              </Link>
         </div>
       </div>
     </div>
