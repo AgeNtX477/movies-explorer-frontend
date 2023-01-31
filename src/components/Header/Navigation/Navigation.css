@@ -1,0 +1,248 @@
+.Navigation {
+  max-width: 100%;
+  margin: auto 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 17px 70px 0 70px;
+  /* position: relative; */
+}
+
+.Navigation__logo {
+  transition: opacity 0.3s;
+}
+
+.Navigation__logo:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.Navigation__logo-auth {
+  margin: auto;
+  width: 396px;
+  margin-top: 51px;
+  margin-bottom: 40px;
+}
+
+.Navigation__signup {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: #000;
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+
+.Navigation__signin {
+  padding: 7px 20px;
+  border-radius: 3px;
+  background-color: #2be080;
+  box-sizing: border-box;
+  margin-left: 25px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: #000;
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+
+.Navigation__signup:hover,
+.Navigation__signin:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.Navagation__nav-box {
+  display: flex;
+}
+
+.Navigation__nav-button {
+  display: none;
+  background-color: inherit;
+  border: none;
+  width: 44px;
+  height: 44px;
+}
+
+.Navigation__movie {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.3;
+  text-decoration: none;
+  color: #000;
+  margin: 8px 20px;
+  transition: linear 0.3s;
+}
+
+.Navigation__movie:hover {
+  opacity: 0.8;
+}
+
+.Navigation__saved-movie {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.3;
+  text-decoration: none;
+  color: #000;
+  margin: 8px 50px auto 0;
+  display: flex;
+  justify-content: center;
+  transition: linear 0.3s;
+}
+
+.Navigation__saved-movie:hover {
+  opacity: 0.8;
+}
+
+.Navigation__profile-container {
+  position: relative;
+  transition: linear 0.3s;
+}
+
+.Navigation__profile-container:hover {
+  opacity: 0.8;
+}
+
+.Navigation__profile-container_place_dropdown {
+  margin-top: 618px;
+  padding-bottom: 90px;
+}
+
+/* .Navigation__profile-logo1 {
+
+} */
+
+.Navigation__profile-logo2 {
+  position: absolute;
+  left: 12px;
+  top: 9px;
+}
+
+.Navigation__profile-acc {
+  position: absolute;
+  top: 7px;
+  right: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.3;
+  text-decoration: none;
+  color: #000;
+  margin: 0;
+}
+
+.Navigation__dropdown-menu {
+  visibility: hidden;
+  position: fixed;
+  width: 100%;
+  height: 1024px;
+  right: 0;
+  top: 0;
+  transition: visibility 0.2s linear, opacity 0.2s linear;
+  opacity: 0;
+  z-index: 2;
+  background-color: rgb(0, 0, 0, 0.3);
+  box-sizing: border-box;
+}
+
+.Navigation__dropdown-menu_is-open {
+  visibility: visible;
+  opacity: 1;
+  transition: 0.7s;
+}
+
+.Navigation__dropdown-content {
+  width: 67.3%;
+  height: 100%;
+  background-color: #fff;
+  position: fixed;
+  right: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Navigation__dropdown-link {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #000;
+  text-decoration: none;
+  margin: 0 auto 28px auto;
+  border-bottom: 1px solid transparent;
+  transition: linear 0.3s;
+}
+
+.Navigation__dropdown-link:hover {
+  border-bottom: 1px solid #000;
+}
+
+.Navigation__dropdown-link:first-child {
+  padding-top: 159px;
+}
+
+.Navigation__dropdown-link:last-child {
+  margin: 0;
+  padding: 0;
+}
+
+.Navigation__dropdown-close {
+  border: none;
+  background-color: inherit;
+  position: fixed;
+  right: 29.2px;
+  top: 29.2px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .Navigation__logo-auth {
+    margin-top: 232px;
+  }
+  .Navagation__nav-box {
+    display: none;
+  }
+  .Navigation__nav-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .Navigation {
+    padding: 17px 30px 0 30px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .Navigation {
+    padding: 18px 14px 0 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .Navigation__logo-auth {
+    margin-top: 56px;
+    width: 38px;
+    height: 38px;
+  }
+  .Navigation__signup,
+  .Navigation__signin {
+    font-size: 10px;
+  }
+  .Navigation__dropdown-content {
+    width: 100%;
+  }
+  .Navigation__dropdown-close {
+    right: 20.2px;
+    top: 20.2px;
+  }
+  .Navigation__dropdown-link {
+    margin-bottom: 15px;
+  }
+  .Navigation__dropdown-link:first-child {
+    padding-top: 144px;
+  }
+  .Navigation__profile-container_place_dropdown {
+    margin-top: 400px;
+    padding-bottom: 90px;
+  }
+}

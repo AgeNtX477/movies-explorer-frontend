@@ -1,0 +1,113 @@
+.MoviesCard {
+  width: 100%;
+  height: 134px;
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: space-between;
+}
+
+.MoviesCard__content {
+  padding-left: 22px;
+  display: flex;
+  flex-direction: column;
+}
+
+.MoviesCard__name {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-top: 22px;
+  margin-bottom: 0;
+}
+
+.MoviesCard__duration {
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.2;
+  margin-top: 13px;
+  margin-bottom: 30px;
+  color: #A0A0A0;
+}
+
+.MoviesCard__like-button {
+  background-image: url(../../images/likebutton.svg);
+  border: none;
+  width: 14px;
+  height: 12px;
+  background-color: inherit;
+  cursor: pointer;
+  transition: linear 0.3s;
+}
+
+.MoviesCard__like-button:hover {
+  opacity: 0.7;
+}
+
+.MoviesCard__like-button_type_active {
+  background-image: url(../../images/likebuttonred.svg);
+}
+
+.MoviesCard__img {
+  width: 220px;
+  height: 122px;
+  margin: 6px 6px 6px;
+}
+
+.MoviesCard__delete {
+  background-image: url(../../images/moviedelete.svg);
+  border: none;
+  width: 8.13px;
+  height: 8.13px;
+  background-color: inherit;
+  cursor: pointer;
+  transition: linear 0.3s;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.MoviesCard__delete:hover {
+  opacity: 0.7;
+}
+
+@media screen and (max-width: 500px) {
+  .MoviesCard {
+    position: relative;
+    height: 232px;
+    background-color: #f9f9f9;
+    display: flex;
+  }
+
+  .MoviesCard__img {
+    width: 100%;
+    min-height: 168px;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .MoviesCard__content {
+    margin-top: 182px;
+  }
+
+  .MoviesCard__name {
+    font-size: 12px;
+    margin: 0;
+  }
+
+  .MoviesCard__duration {
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-top: 13px;
+    margin-bottom: 0;
+  }
+
+  .MoviesCard__like-button {
+    position: absolute;
+    bottom: 36px;
+    right: 16px;
+  }
+}

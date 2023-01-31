@@ -1,0 +1,119 @@
+.AboutProject {
+  padding: 93px 70px 110px 70px;
+}
+
+.AboutProject__title {
+  margin: 0 70px 70px 0;
+  padding-bottom: 23px;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.1;
+  border-bottom: 1px solid #000;
+  width: 100%;
+}
+
+.AboutProject__container {
+  display: flex;
+  align-self: center;
+  gap: 40px;
+}
+
+.AboutProject__semi-container {
+  max-width: 550px;
+}
+
+.AboutProject__subtitle {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.AboutProject__caption {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  margin: 26px 0 110px;
+}
+
+.AboutProject__schedule-weeks {
+  display: flex;
+}
+
+.AboutProject__schedule-item {
+  margin: 0;
+  padding: 9px 0 9px 0;
+  width: 100%;
+  color: #000;
+  background-color: #2be080;
+  max-width: 238px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.21;
+  font-weight: 400;
+}
+
+.AboutProject__schedule-item:last-child {
+  background-color: #f2f2f2;
+  max-width: 912px;
+}
+
+.AboutProject__schedule-language {
+  display: flex;
+}
+
+.AboutProject__schedule-caption {
+  width: 100%;
+  max-width: 238px;
+  text-align: center;
+  color: #a0a0a0;
+  font-size: 14px;
+  line-height: 1.21;
+  font-weight: 500px;
+}
+
+.AboutProject__schedule-caption:last-child {
+  max-width: 912px;
+}
+
+@media screen and (max-width: 768px) {
+  .AboutProject {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  .AboutProject__caption {
+    font-size: 12px;
+  }
+  .AboutProject__schedule-item,
+  .AboutProject__schedule-caption {
+    max-width: 140px;
+  }
+}
+
+@media screen and (max-width: 643px) {
+  .AboutProject {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .AboutProject__container {
+    flex-direction: column;
+    gap: 0;
+  }
+  .AboutProject__caption {
+    margin-bottom: 56px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .AboutProject {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+  .AboutProject__schedule-item,
+  .AboutProject__schedule-caption {
+    max-width: 100px;
+  }
+  .AboutProject__title {
+    font-size: 18px;
+  }
+}

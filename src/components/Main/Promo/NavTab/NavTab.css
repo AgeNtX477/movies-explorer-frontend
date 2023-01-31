@@ -1,0 +1,44 @@
+.navTab {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .navTab__item {
+    max-width: 96px;
+    text-decoration: none;
+    color: #ffffff;
+    margin-right: 10px;
+    border-radius: 10px;
+    background-color: #e8e8e8;
+    padding: 10px 13.5px;
+    transition: linear 0.3s;
+    font-size: 12px;
+    line-height: 1.25;
+    font-weight: 500;
+  }
+  
+  .navTab__item:last-child {
+    margin-right: 0;
+    padding-right: 23px;
+    padding-left: 23px;
+  }
+  
+  .navTab__item:first-child {
+    padding-right: 17px;
+    padding-left: 17px;
+  }
+  
+  .navTab__item:hover {
+    background-color: #2be080;
+    color: #000;
+  }
+
+  @media screen and (max-width: 500px) {
+    .navTab {
+        margin-bottom: 17px;
+    }
+    .navTab__item  {
+        font-size: 10px;
+    }
+  }
