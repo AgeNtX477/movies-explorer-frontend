@@ -2,11 +2,21 @@ import './SavedMovies.css'
 import SearchForm from '../SearchForm/SearchForm'
 import MoviesCardList from '../MoviesCardList/MoviesCardList'
 
-function SavedMovies () {
+function SavedMovies ({ isLoading, ...props }) {
   return (
     <main>
-      <SearchForm />
-      <MoviesCardList />
+      <SearchForm
+        handleSearchSavedMovie={props.handleSearchSavedMovie}
+        isSavedMovies={true}
+        handleCheckboxSwitch={props.handleCheckboxSwitch}
+        isSwitched={props.isSwitched}
+      />
+      <MoviesCardList
+        isLoading={isLoading}
+        isMovieLiked={true}
+        movies={props.movies}
+        handleCardDislike={props.handleCardDislike}
+      />
     </main>
   )
 }
