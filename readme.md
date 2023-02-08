@@ -7,10 +7,10 @@ FRONTEND для проекта MOVIES-EXPLORER. Сделано при помощ
 
 **Https** 
 
-* [Ссылка на удаленный сервер](https://agentx.explorer.nomoredomains.club)
+* [Ссылка на сайт](http://agentx.explorer.nomoredomains.club)
 
 **API_SERVER**
 
-* [Ссылка на сервер](https://api.agentx.explorer.nomoredomains.club)
+* [Ссылка на удаленный сервер](https://api.agentx.explorer.nomoredomains.club)
 
 
