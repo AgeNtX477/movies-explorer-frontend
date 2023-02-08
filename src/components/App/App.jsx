@@ -1,6 +1,6 @@
 import './App.css'
 import React, { useEffect, useState } from 'react'
-import { Switch, Route, useHistory, useLocation } from 'react-router-dom'
+import { Switch, Route, useHistory } from 'react-router-dom'
 import { CurrentUserContext } from '../../context/CurrentUserContext'
 import ProtectedRoute from '../../protectedRoute/ProtectedRoute'
 import Header from '../Header/Header'
@@ -18,7 +18,6 @@ import moviesApi from '../../utils/MoviesApi'
 
 function App () {
   const history = useHistory()
-  const location = useLocation()
   const [isLoading, setIsLoading] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [movies, setMovies] = useState([])
@@ -68,9 +67,9 @@ function App () {
   function handleProfileUpdate (e, name, email) {
     // логин редактирование профиля
     mainApi
-      .editProfile()
+      .editProfile(name, email)
       .then(data => {
-        setCurrentUser(data.name, data.email)
+        setCurrentUser({...data})
       })
       .catch(err => {
         if (err.status === 400) {

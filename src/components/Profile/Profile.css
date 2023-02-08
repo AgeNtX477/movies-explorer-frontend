@@ -16,6 +16,7 @@
 .Profile__form {
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
 }
 
 .Profile__input-box {
@@ -58,21 +59,28 @@
   min-width: 30px;
   position: absolute;
   left: 0;
-  top: 60px;
+  top: 80px;
 
 }
 
 .Profile__edit-button {
   background-color: inherit;
-  color: #000;
+  color: blue;
   border-radius: 3px;
   border: none;
   font-size: 13px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1.21;
   margin-top: 204px;
   cursor: pointer;
+  transition: linear .2s;
 }
+
+.Profile__edit-button:hover {
+  font-size: 17px;
+}
+
+
 
 .Profile__logout {
   text-decoration: none;
@@ -82,6 +90,15 @@
   line-height: 1.2;
   margin-top: 16px;
   text-align: center;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+  transition: linear .2s;
+  border: 0 solid transparent;
+}
+
+.Profile__logout:hover {
+  font-size: 16px;
 }
 
 @media screen and (max-width: 768px) {
