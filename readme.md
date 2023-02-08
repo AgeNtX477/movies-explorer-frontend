@@ -13,4 +13,6 @@ FRONTEND для проекта MOVIES-EXPLORER. Сделано при помощ
 
 * [Ссылка на удаленный сервер](https://api.agentx.explorer.nomoredomains.club)
 
+Ccылка на PULL REQUEST: https://github.com/AgeNtX477/movies-explorer-frontend/pull/2
+
 
