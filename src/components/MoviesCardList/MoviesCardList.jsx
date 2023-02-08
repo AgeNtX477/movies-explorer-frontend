@@ -1,7 +1,7 @@
 import './MoviesCardList.css'
 import MovieCard from '../MoviesCard/MoviesCard'
 import Preloader from '../Preloader/Preloader'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 function MoviesCardList ({ isLoading, ...props }) {
   const [movieAmount, setMovieAmount] = useState(() => {
@@ -13,7 +13,7 @@ function MoviesCardList ({ isLoading, ...props }) {
     }
   })
 
-  const [addMoreMovie] = useState(() => {
+  const [addMoreMovie, setAddMoreMovies] = useState(() => {
     const width = window.innerWidth
     if (width > 500) {
       return 6
@@ -31,12 +31,27 @@ function MoviesCardList ({ isLoading, ...props }) {
   return (
     <>
       {isLoading && <Preloader />}
+      <span
+        className={`MovieCardList__span ${
+          !props.connectionError && `MovieCardList__span_disabled`
+        }`}
+      >
+        Во время запроса произошла ошибка. Возможно, проблема с соединением или
+        сервер недоступен. Подождите немного и попробуйте ещё раз
+      </span>
+      <span
+        className={`MovieCardList__span ${
+          !props.foundNotAny && `MovieCardList__span_disabled`
+        }`}
+      >
+        Ничего не найдено
+      </span>
       <section className='MoviesCardList'>
         <div className='MoviesCardList__cardlist-container'>
           {renderMovie.map(movie => {
             return (
               <MovieCard
-                key={props.isSavedMovies ? movie.movieId : movie.id}
+                key={movie._id || movie.id}
                 handleCardLike={props.handleCardLike}
                 handleCardDislike={props.handleCardDislike}
                 isSavedMovies={props.isSavedMovies}
@@ -48,7 +63,7 @@ function MoviesCardList ({ isLoading, ...props }) {
         <button
           onClick={handleAddMoreMovies}
           className={`MoviesCardList__more-button ${
-            props.isSavedMovie ? 'MoviesCardList__more-button_hidden' : ''
+            props.isSavedMovies ? 'MoviesCardList__more-button_hidden' : ''
           }`}
         >
           Еще
@@ -59,3 +74,5 @@ function MoviesCardList ({ isLoading, ...props }) {
 }
 
 export default MoviesCardList
+
+/* key={props.isSavedMovies ? movie.movieId : movie.id} */

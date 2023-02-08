@@ -19,9 +19,10 @@
 }
 
 .Profile__input-box {
-  padding: 16px 0 16px 0;
+  padding: 40px 0 40px 0;
   display: flex;
   justify-content: space-between;
+  position: relative;
 }
 
 .Profile__input-box:first-child {
@@ -43,7 +44,7 @@
   outline: none;
   text-align: right;
   width: 100%;
-  font-size: 11px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 1.2;
 }
@@ -54,6 +55,11 @@
   line-height: 1.2;
   color: #ff3055;
   padding-top: 5px;
+  min-width: 30px;
+  position: absolute;
+  left: 0;
+  top: 60px;
+
 }
 
 .Profile__edit-button {

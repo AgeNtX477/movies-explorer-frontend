@@ -1,12 +1,12 @@
 import './Header.css'
 import Navigation from './Navigation/Navigation'
 
-function Header () {
-    return (
-        <header className='Header'>
-            <Navigation />
-        </header>
-    )
+function Header (props) {
+  return (
+    <header className='Header'>
+      <Navigation isLoggedIn={props.isLoggedIn} />
+    </header>
+  )
 }
 
 export default Header

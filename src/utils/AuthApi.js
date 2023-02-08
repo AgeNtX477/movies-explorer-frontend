@@ -11,11 +11,11 @@ class AuthApi {
     }
   }
 
-  signUp (name, email, password) { // регистрация пользователя
+  signUp (name, email, password) {
+    // регистрация пользователя
     return fetch(`${this._baseUrl}/signup`, {
       method: 'POST',
       headers: {
-        Accept: 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -23,10 +23,18 @@ class AuthApi {
         email: email,
         password: password
       })
-    }).then(this._checkResponse)
+    })
+      .then(this._checkResponse)
+      .then(data => {
+        if (data.token) {
+          localStorage.setItem('jwt', data.token)
+          return data
+        }
+      })
   }
 
-  signIn (email, password) { // авторизация(логин) пользователя
+  signIn (email, password) {
+    // авторизация(логин) пользователя
     return fetch(`${this._baseUrl}/signin`, {
       method: 'POST',
       headers: {
@@ -53,7 +61,11 @@ class AuthApi {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${jwt}`
       }
-    }).then(this._checkResponse)
+    })
+      .then(this._checkResponse)
+      .then(data => {
+        return data
+      })
   }
 }
 

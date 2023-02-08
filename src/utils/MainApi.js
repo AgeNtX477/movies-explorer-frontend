@@ -20,13 +20,17 @@ class MainApi {
     }).then(this._checkResponse)
   }
 
-  editProfile () {
+  editProfile (name, email) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('jwt')}`,
         'Content-Type': 'application/json'
-      }
+      },
+      body: JSON.stringify({
+        name,
+        email
+      })
     }).then(this._checkResponse)
   }
 
@@ -54,7 +58,7 @@ class MainApi {
   }
 
   getMovies () {
-    return fetch(`${this._baseUrl}/movies`, {
+    return fetch(`${this._baseUrl}/movies/`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('jwt')}`,
         'Content-Type': 'application/json'

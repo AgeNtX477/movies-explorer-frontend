@@ -20,6 +20,7 @@
   margin-right: 10px;
   outline: none;
   padding-left: 20px;
+  box-sizing: border-box;
 }
 
 .SearchForm__search-input::placeholder {

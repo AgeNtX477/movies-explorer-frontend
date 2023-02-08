@@ -1,10 +1,13 @@
 import './Movies.css'
 import SearchForm from '../SearchForm/SearchForm'
 import MoviesCardList from '../MoviesCardList/MoviesCardList'
+import Header from '../Header/Header'
+import Footer from '../Footer/Footer'
 
 function Movies ({ isLoading, ...props }) {
   return (
     <main>
+      <Header />
       <SearchForm
         handleSearchMovie={props.handleSearchMovie}
         handleCheckboxSwitch={props.handleCheckboxSwitch}
@@ -15,7 +18,11 @@ function Movies ({ isLoading, ...props }) {
         movies={props.movies}
         handleCardLike={props.handleCardLike}
         handleCardDislike={props.handleCardDislike}
+        isSavedMovies={false}
+        connectionError={props.connectionError}
+        foundNotAny={props.foundNotAny}
       />
+      <Footer />
     </main>
   )
 }

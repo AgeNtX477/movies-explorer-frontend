@@ -1,10 +1,13 @@
 import './SavedMovies.css'
 import SearchForm from '../SearchForm/SearchForm'
 import MoviesCardList from '../MoviesCardList/MoviesCardList'
+import Header from '../Header/Header'
+import Footer from '../Footer/Footer'
 
 function SavedMovies ({ isLoading, ...props }) {
   return (
     <main>
+      <Header />
       <SearchForm
         handleSearchSavedMovie={props.handleSearchSavedMovie}
         isSavedMovies={true}
@@ -13,10 +16,11 @@ function SavedMovies ({ isLoading, ...props }) {
       />
       <MoviesCardList
         isLoading={isLoading}
-        isMovieLiked={true}
+        isSavedMovies={true}
         movies={props.movies}
         handleCardDislike={props.handleCardDislike}
       />
+      <Footer />
     </main>
   )
 }
