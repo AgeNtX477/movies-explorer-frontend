@@ -221,7 +221,7 @@ function App () {
     mainApi
       .getProfile()
       .then(data => {
-        setCurrentUser({ data })
+        setCurrentUser({...data})
       })
       .catch(err => console.log(err))
   }, [])
