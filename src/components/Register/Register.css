@@ -107,6 +107,14 @@
   margin-left: 6px;
 }
 
+.Register__warning-span {
+  color: red;
+}
+
+.Register__warning-span_disabled {
+  display: none;
+}
+
 @media screen and (max-width: 768px) {
   .Register__button {
     margin-top: 134px;

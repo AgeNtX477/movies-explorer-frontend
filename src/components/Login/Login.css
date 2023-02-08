@@ -104,6 +104,14 @@
   margin-left: 6px;
 }
 
+.Login__warning-span {
+  color: red;
+}
+
+.Login__warning-span_disabled {
+  display: none;
+}
+
 @media screen and (max-width: 768px) {
   .Login__button {
     margin-top: 209px;

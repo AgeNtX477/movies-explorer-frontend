@@ -41,7 +41,9 @@ function Login (props) {
           onChange={handleErrors}
         ></input>
         <span className='Login__span'>{errors.password}</span>
-
+        <span className={`Login__warning-span ${
+          !props.authWarningMessage && `Login__warning-span_disabled`
+        }`}> Что-то пошло не так! Проверьте корректность данных!</span>
         <button type='submit' className={`Login__button ${
             !isValid ? `Login__button_disabled` : ''
           }`}

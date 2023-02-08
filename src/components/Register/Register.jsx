@@ -70,7 +70,9 @@ function Register (props) {
         <span required className='Register__span'>
           {errors.password}
         </span>
-
+        <span className={`Register__warning-span ${
+          !props.authWarningMessage && `Register__warning-span_disabled`
+        }`}> Что-то пошло не так! Проверьте корректность данных!</span>
         <button
           type='submit'
           className={`Register__button ${

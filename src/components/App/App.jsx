@@ -31,9 +31,11 @@ function App () {
   })
   const [connectionError, setConnectionError] = useState(false) // состояние отвечающее за вывод сообщение если потеряно соединение при поиске фильмов
   const [foundNotAny, setFoundNotAny] = useState(false) // состояние отвечающее за вывод сообщение если не найден ни один фильм
+  const [authWarningMessage, isAuthWarningMessage] = useState(false) // состояние отвечающее за вывод сообщение если есть ошибки регистрации или логина
 
   function handleRegister (e, name, email, password) {
     // регистрация
+    isAuthWarningMessage(false)
     authApi
       .signUp(name, email, password)
       .then(data => {
@@ -44,12 +46,15 @@ function App () {
       .catch(err => {
         if (err.status === 400) {
           console.log('400 - некорректно заполнено одно из полей')
+        } else {
+          isAuthWarningMessage(true)
         }
       })
   }
 
   function handleLogin (e, email, password) {
     // логин
+    isAuthWarningMessage(false)
     authApi
       .signIn(email, password)
       .then(data => {
@@ -60,6 +65,8 @@ function App () {
       .catch(err => {
         if (err.status === 400) {
           console.log('400 - некорректно заполнено одно из полей')
+        } else {
+          isAuthWarningMessage(true)
         }
       })
   }
@@ -69,7 +76,7 @@ function App () {
     mainApi
       .editProfile(name, email)
       .then(data => {
-        setCurrentUser({...data})
+        setCurrentUser({ ...data })
       })
       .catch(err => {
         if (err.status === 400) {
@@ -79,19 +86,20 @@ function App () {
   }
 
   function handleLogOut () {
+    // выходи их приложения + удаление локальных данных
     setIsLoggedIn(false)
     setCurrentUser({
       _id: '',
       name: '',
       email: ''
     })
-    setMovieApi([]);
-    setMovies([]);
-    setSavedMovies([]);
-    localStorage.removeItem('jwt');
-    localStorage.removeItem('savedMovies');
-    localStorage.removeItem('movies');
-    history.push('/');
+    setMovieApi([])
+    setMovies([])
+    setSavedMovies([])
+    localStorage.removeItem('jwt')
+    localStorage.removeItem('savedMovies')
+    localStorage.removeItem('movies')
+    history.push('/')
   }
 
   useEffect(() => {
@@ -213,7 +221,7 @@ function App () {
     mainApi
       .getProfile()
       .then(data => {
-        setCurrentUser({data})
+        setCurrentUser({ data })
       })
       .catch(err => console.log(err))
   }, [])
@@ -244,11 +252,17 @@ function App () {
         <Switch>
           <Route path='/signup'>
             <Header />
-            <Register onRegister={handleRegister} />
+            <Register
+              onRegister={handleRegister}
+              authWarningMessage={authWarningMessage}
+            />
           </Route>
           <Route path='/signin'>
             <Header />
-            <Login onLogin={handleLogin} />
+            <Login
+              onLogin={handleLogin}
+              authWarningMessage={authWarningMessage}
+            />
           </Route>
           <ProtectedRoute
             path='/profile'
