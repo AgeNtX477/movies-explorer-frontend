@@ -60,27 +60,40 @@
   position: absolute;
   left: 0;
   top: 80px;
-
 }
 
 .Profile__edit-button {
   background-color: inherit;
-  color: blue;
-  border-radius: 3px;
   border: none;
+  color: blue;
   font-size: 13px;
   font-weight: 500;
   line-height: 1.21;
   margin-top: 204px;
   cursor: pointer;
-  transition: linear .2s;
+  transition: linear 0.2s;
 }
 
 .Profile__edit-button:hover {
   font-size: 17px;
 }
 
+.Profile__edit-button_disabled {
+  background-color: inherit;
+  color: black;
+  border-radius: 3px;
+  border: none;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.21;
+  margin-top: 204px;
+  cursor: auto;
+}
 
+.Profile__edit-button_disabled:hover {
+  font-size: 13px;
+  cursor: auto;
+}
 
 .Profile__logout {
   text-decoration: none;
@@ -93,12 +106,21 @@
   border: none;
   background-color: inherit;
   cursor: pointer;
-  transition: linear .2s;
+  transition: linear 0.2s;
   border: 0 solid transparent;
 }
 
 .Profile__logout:hover {
   font-size: 16px;
+}
+
+.Profile__warning-span {
+  color: red;
+  text-align: center;
+}
+
+.Profile__warning-span_disabled {
+  display: none;
 }
 
 @media screen and (max-width: 768px) {

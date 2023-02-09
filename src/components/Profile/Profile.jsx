@@ -62,13 +62,15 @@ function Profile (props) {
             ></input>
             <span required className='Profile__span'>{errors.email}</span>
           </div>
-
+          <span className={`Profile__warning-span ${
+          !props.authWarningMessage && `Profile__warning-span_disabled`
+        }`}> Что-то пошло не так! Проверьте корректность данных!</span>
           <button
             type='submit'
             className={`Profile__edit-button ${
               !isValid ? `Profile__edit-button_disabled` : ''
             }`}
-            /* disabled={!isValid} */
+            disabled={!isValid}
           >
             Редактировать
           </button>

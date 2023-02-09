@@ -31,11 +31,11 @@ function App () {
   })
   const [connectionError, setConnectionError] = useState(false) // состояние отвечающее за вывод сообщение если потеряно соединение при поиске фильмов
   const [foundNotAny, setFoundNotAny] = useState(false) // состояние отвечающее за вывод сообщение если не найден ни один фильм
-  const [authWarningMessage, isAuthWarningMessage] = useState(false) // состояние отвечающее за вывод сообщение если есть ошибки регистрации или логина
+  const [authWarningMessage, setAuthWarningMessage] = useState(false) // состояние отвечающее за вывод сообщение если есть ошибки регистрации или логина
 
   function handleRegister (e, name, email, password) {
     // регистрация
-    isAuthWarningMessage(false)
+    setAuthWarningMessage(false)
     authApi
       .signUp(name, email, password)
       .then(data => {
@@ -47,14 +47,14 @@ function App () {
         if (err.status === 400) {
           console.log('400 - некорректно заполнено одно из полей')
         } else {
-          isAuthWarningMessage(true)
+          setAuthWarningMessage(true)
         }
       })
   }
 
   function handleLogin (e, email, password) {
     // логин
-    isAuthWarningMessage(false)
+    setAuthWarningMessage(false)
     authApi
       .signIn(email, password)
       .then(data => {
@@ -66,13 +66,14 @@ function App () {
         if (err.status === 400) {
           console.log('400 - некорректно заполнено одно из полей')
         } else {
-          isAuthWarningMessage(true)
+          setAuthWarningMessage(true)
         }
       })
   }
 
   function handleProfileUpdate (e, name, email) {
     // логин редактирование профиля
+    setAuthWarningMessage(false)
     mainApi
       .editProfile(name, email)
       .then(data => {
@@ -81,6 +82,8 @@ function App () {
       .catch(err => {
         if (err.status === 400) {
           console.log('400 - некорректно заполнено одно из полей')
+        } else {
+          setAuthWarningMessage(true)
         }
       })
   }
@@ -221,7 +224,7 @@ function App () {
     mainApi
       .getProfile()
       .then(data => {
-        setCurrentUser({...data})
+        setCurrentUser({ ...data })
       })
       .catch(err => console.log(err))
   }, [])
@@ -270,6 +273,7 @@ function App () {
             component={Profile}
             onUpdateUser={handleProfileUpdate}
             handleLogOut={handleLogOut}
+            authWarningMessage={authWarningMessage}
           ></ProtectedRoute>
           <Route exact path='/'>
             <Header isLoggedIn={isLoggedIn} />
