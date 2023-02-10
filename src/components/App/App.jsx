@@ -1,6 +1,6 @@
 import './App.css'
 import React, { useEffect, useState } from 'react'
-import { Switch, Route, useHistory } from 'react-router-dom'
+import { Switch, Route, useHistory, useLocation } from 'react-router-dom'
 import { CurrentUserContext } from '../../context/CurrentUserContext'
 import ProtectedRoute from '../../protectedRoute/ProtectedRoute'
 import Header from '../Header/Header'
@@ -18,6 +18,7 @@ import moviesApi from '../../utils/MoviesApi'
 
 function App () {
   const history = useHistory()
+  const location = useLocation()
   const [isLoading, setIsLoading] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [movies, setMovies] = useState([])
@@ -25,23 +26,35 @@ function App () {
   const [movieApi, setMovieApi] = useState([])
   const [isSwitched, setIsSwitched] = useState(false)
   const [currentUser, setCurrentUser] = useState({
-    _id: '',
     name: '',
-    email: ''
+    email: '',
+    _id: ''
   })
   const [connectionError, setConnectionError] = useState(false) // состояние отвечающее за вывод сообщение если потеряно соединение при поиске фильмов
   const [foundNotAny, setFoundNotAny] = useState(false) // состояние отвечающее за вывод сообщение если не найден ни один фильм
   const [authWarningMessage, setAuthWarningMessage] = useState(false) // состояние отвечающее за вывод сообщение если есть ошибки регистрации или логина
 
-  function handleRegister (e, name, email, password) {
+  function handleRegister (name, email, password) {
     // регистрация
     setAuthWarningMessage(false)
     authApi
       .signUp(name, email, password)
-      .then(data => {
-        setCurrentUser({ ...data })
-        setIsLoggedIn(true)
-        history.push('/movies')
+      .then(() => { // после успешной регистрации сделаем автоматический логин
+        authApi
+          .signIn(email, password)
+          .then(data => {
+            localStorage.setItem('jwt', data.token)
+            setIsLoggedIn(true)
+            setCurrentUser({ ...data })
+            history.push('/movies')
+          })
+          .catch(err => {
+            if (err.status === 400) {
+              console.log('400 - некорректно заполнено одно из полей')
+            } else {
+              setAuthWarningMessage(true)
+            }
+          })
       })
       .catch(err => {
         if (err.status === 400) {
@@ -52,12 +65,13 @@ function App () {
       })
   }
 
-  function handleLogin (e, email, password) {
+  function handleLogin (email, password) {
     // логин
     setAuthWarningMessage(false)
     authApi
       .signIn(email, password)
       .then(data => {
+        localStorage.setItem('jwt', data.token)
         setIsLoggedIn(true)
         setCurrentUser({ ...data })
         history.push('/movies')
@@ -71,7 +85,7 @@ function App () {
       })
   }
 
-  function handleProfileUpdate (e, name, email) {
+  function handleProfileUpdate (name, email) {
     // логин редактирование профиля
     setAuthWarningMessage(false)
     mainApi
@@ -220,34 +234,38 @@ function App () {
   }
 
   useEffect(() => {
-    // получение данных пользователя
-    mainApi
-      .getProfile()
-      .then(data => {
-        setCurrentUser({ ...data })
-      })
-      .catch(err => console.log(err))
-  }, [])
-
-  useEffect(() => {
-    // получение фильмов
-    const movies = localStorage.getItem('movies')
-    const savedMovies = localStorage.getItem('savedMovies')
-    if (movies) {
-      setMovies(JSON.parse(movies))
-    }
-    if (savedMovies) {
-      setSavedMovies(JSON.parse(savedMovies))
-    } else {
+    if (isLoggedIn) {
+      // получение данных пользователя
       mainApi
-        .getMovies()
-        .then(res => {
-          setSavedMovies(res)
-          localStorage.setItem('savedMovies', JSON.stringify(res))
+        .getProfile()
+        .then(data => {
+          setCurrentUser({ ...data })
         })
         .catch(err => console.log(err))
     }
   }, [isLoggedIn])
+
+  useEffect(() => {
+    // получение фильмов
+    if (isLoggedIn) {
+      const movies = localStorage.getItem('movies')
+      const savedMovies = localStorage.getItem('savedMovies')
+      if (movies) {
+        setMovies(JSON.parse(movies))
+      }
+      if (savedMovies) {
+        setSavedMovies(JSON.parse(savedMovies))
+      } else {
+        mainApi
+          .getMovies()
+          .then(res => {
+            setSavedMovies(res)
+            localStorage.setItem('savedMovies', JSON.stringify(res))
+          })
+          .catch(err => console.log(err))
+      }
+    }
+  }, [location, isLoggedIn])
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

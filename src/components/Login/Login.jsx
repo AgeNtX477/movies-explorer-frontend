@@ -7,7 +7,7 @@ function Login (props) {
 
   function nandleSubmit (e) {
     e.preventDefault()
-    props.onLogin(e, values.email, values.password)
+    props.onLogin(values.email, values.password)
   }
   return (
     <main className='Login'>

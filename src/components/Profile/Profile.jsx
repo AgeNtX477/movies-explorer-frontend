@@ -11,7 +11,6 @@ function Profile (props) {
   function handleSubmit (e) {
     e.preventDefault()
     props.onUpdateUser(
-      e,
       values.name || currentUser.name,
       values.email || currentUser.email
     )
@@ -40,11 +39,13 @@ function Profile (props) {
               className='Profile__input'
               onChange={handleErrors}
               autoComplete='off'
-              ref={input} 
+              ref={input}
               minLength={2}
               maxLength={20}
             ></input>
-            <span required className='Profile__span'>{errors.name}</span>
+            <span required className='Profile__span'>
+              {errors.name}
+            </span>
           </div>
           <div className='Profile__input-box'>
             <label required className='Profile__label'>
@@ -60,11 +61,18 @@ function Profile (props) {
               autoComplete='off'
               ref={input}
             ></input>
-            <span required className='Profile__span'>{errors.email}</span>
+            <span required className='Profile__span'>
+              {errors.email}
+            </span>
           </div>
-          <span className={`Profile__warning-span ${
-          !props.authWarningMessage && `Profile__warning-span_disabled`
-        }`}> Что-то пошло не так! Проверьте корректность данных!</span>
+          <span
+            className={`Profile__warning-span ${
+              !props.authWarningMessage && `Profile__warning-span_disabled`
+            }`}
+          >
+            {' '}
+            Что-то пошло не так! Проверьте корректность данных!
+          </span>
           <button
             type='submit'
             className={`Profile__edit-button ${

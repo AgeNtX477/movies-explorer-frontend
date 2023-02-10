@@ -58,7 +58,7 @@ class MainApi {
   }
 
   getMovies () {
-    return fetch(`${this._baseUrl}/movies/`, {
+    return fetch(`${this._baseUrl}/movies`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('jwt')}`,
         'Content-Type': 'application/json'
