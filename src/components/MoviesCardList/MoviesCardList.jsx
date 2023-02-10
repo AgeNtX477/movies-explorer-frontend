@@ -13,7 +13,7 @@ function MoviesCardList ({ isLoading, ...props }) {
     }
   })
 
-  const [addMoreMovie, setAddMoreMovies] = useState(() => {
+  const [addMoreMovie] = useState(() => {
     const width = window.innerWidth
     if (width > 500) {
       return 6
@@ -74,5 +74,3 @@ function MoviesCardList ({ isLoading, ...props }) {
 }
 
 export default MoviesCardList
-
-/* key={props.isSavedMovies ? movie.movieId : movie.id} */

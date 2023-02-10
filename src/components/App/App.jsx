@@ -20,7 +20,7 @@ function App () {
   const history = useHistory()
   const location = useLocation()
   const [isLoading, setIsLoading] = useState(false)
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(true)
   const [movies, setMovies] = useState([])
   const [savedMovies, setSavedMovies] = useState([])
   const [movieApi, setMovieApi] = useState([])
@@ -120,7 +120,7 @@ function App () {
   }
 
   useEffect(() => {
-    // проверим токен при посещении сайта, если есть то redirect to /movies
+    // проверим токен при повторном посещении сайта
     const jwt = localStorage.getItem('jwt')
     if (jwt) {
       authApi
@@ -128,9 +128,9 @@ function App () {
         .then(res => {
           setIsLoggedIn(true)
           setCurrentUser({ ...res })
-          history.push('/movies')
         })
         .catch(err => {
+          setIsLoggedIn(false)
           if (err.status === 400) {
             console.log('400 — Токен не передан или передан не в том формате')
           } else if (err.status === 401) {
