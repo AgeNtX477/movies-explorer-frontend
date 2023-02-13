@@ -5,6 +5,10 @@ import { useValidation } from '../../hooks/useValidation'
 function Register (props) {
   const { values, handleErrors, errors, isValid } = useValidation()
 
+  function blockInput() {
+    console.log('input blocked')
+  }
+
   function handleSubmit (e) {
     e.preventDefault()
     props.onRegister(values.name, values.email, values.password)
@@ -27,7 +31,7 @@ function Register (props) {
           autoComplete='off'
           type='text'
           className='Register__input'
-          onChange={handleErrors}
+          onChange={!props.isLoading ? handleErrors : blockInput}
           name='name'
           minLength={2}
           maxLength={20}
@@ -45,7 +49,7 @@ function Register (props) {
           autoComplete='off'
           required
           className='Register__input'
-          onChange={handleErrors}
+          onChange={!props.isLoading ? handleErrors : blockInput}
           name='email'
           value={values.email || ''}
         ></input>
@@ -70,18 +74,33 @@ function Register (props) {
         <span required className='Register__span'>
           {errors.password}
         </span>
-        <span className={`Register__warning-span ${
-          !props.authWarningMessage && `Register__warning-span_disabled`
-        }`}> Что-то пошло не так! Проверьте корректность данных!</span>
-        <button
-          type='submit'
-          className={`Register__button ${
-            !isValid ? `Register__button_disabled` : 'Register__button'
+        <span
+          className={`Register__warning-span ${
+            !props.authWarningMessage && `Register__warning-span_disabled`
           }`}
-          disabled={!isValid}
         >
-          Зарегистрироваться
-        </button>
+          {' '}
+          Что-то пошло не так! Проверьте корректность данных!
+        </span>
+        {!props.isLoading ? (
+          <button
+            type='submit'
+            className={`Register__button ${
+              !isValid ? `Register__button_disabled` : 'Register__button'
+            }`}
+            disabled={!isValid}
+          >
+            Зарегистрироваться
+          </button>
+        ) : (
+          <button
+            type='submit'
+            className='Register__button Register__button_disabled'
+            disabled={true}
+          >
+            Регистрация и вход...
+          </button>
+        )}
       </form>
       <h3 className='Register__toLogin'>
         Уже Зарегистрированы?

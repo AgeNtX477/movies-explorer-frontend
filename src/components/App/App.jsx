@@ -32,14 +32,17 @@ function App () {
   })
   const [connectionError, setConnectionError] = useState(false) // состояние отвечающее за вывод сообщение если потеряно соединение при поиске фильмов
   const [foundNotAny, setFoundNotAny] = useState(false) // состояние отвечающее за вывод сообщение если не найден ни один фильм
+  const [successMessage, setCuccessMessage] = useState(false)
   const [authWarningMessage, setAuthWarningMessage] = useState(false) // состояние отвечающее за вывод сообщение если есть ошибки регистрации или логина
 
   function handleRegister (name, email, password) {
     // регистрация
+    setIsLoading(true)
     setAuthWarningMessage(false)
     authApi
       .signUp(name, email, password)
-      .then(() => { // после успешной регистрации сделаем автоматический логин
+      .then(() => {
+        // после успешной регистрации сделаем автоматический логин
         authApi
           .signIn(email, password)
           .then(data => {
@@ -53,7 +56,11 @@ function App () {
               console.log('400 - некорректно заполнено одно из полей')
             } else {
               setAuthWarningMessage(true)
+              setIsLoading(false)
             }
+          })
+          .finally(() => {
+            setIsLoading(false)
           })
       })
       .catch(err => {
@@ -61,12 +68,17 @@ function App () {
           console.log('400 - некорректно заполнено одно из полей')
         } else {
           setAuthWarningMessage(true)
+          setIsLoading(false)
         }
+      })
+      .finally(() => {
+        setIsLoading(false)
       })
   }
 
   function handleLogin (email, password) {
     // логин
+    setIsLoading(true)
     setAuthWarningMessage(false)
     authApi
       .signIn(email, password)
@@ -77,16 +89,22 @@ function App () {
         history.push('/movies')
       })
       .catch(err => {
+        setIsLoggedIn(false)
         if (err.status === 400) {
           console.log('400 - некорректно заполнено одно из полей')
         } else {
           setAuthWarningMessage(true)
+          setIsLoading(false)
         }
+      })
+      .finally(() => {
+        setIsLoading(false)
       })
   }
 
   function handleProfileUpdate (name, email) {
     // логин редактирование профиля
+    setCuccessMessage(false)
     setAuthWarningMessage(false)
     mainApi
       .editProfile(name, email)
@@ -99,6 +117,12 @@ function App () {
         } else {
           setAuthWarningMessage(true)
         }
+      })
+      .finally(() => {
+        setCuccessMessage(true)
+        setTimeout(() => {
+          setCuccessMessage(false)
+        }, 3500)
       })
   }
 
@@ -126,19 +150,19 @@ function App () {
       authApi
         .checkToken(jwt)
         .then(res => {
-          setIsLoggedIn(true)
           setCurrentUser({ ...res })
         })
         .catch(err => {
-          setIsLoggedIn(false)
           if (err.status === 400) {
             console.log('400 — Токен не передан или передан не в том формате')
           } else if (err.status === 401) {
             console.log('401 — Переданный токен некорректен')
           }
         })
+    } else {
+      setIsLoggedIn(false)
     }
-  }, [history])
+  }, [])
 
   function handleCardLike (movie) {
     // постановка лайка(добавление в сохраненные)
@@ -276,6 +300,7 @@ function App () {
             <Register
               onRegister={handleRegister}
               authWarningMessage={authWarningMessage}
+              isLoading={isLoading}
             />
           </Route>
           <Route path='/signin'>
@@ -283,15 +308,18 @@ function App () {
             <Login
               onLogin={handleLogin}
               authWarningMessage={authWarningMessage}
+              isLoading={isLoading}
             />
           </Route>
           <ProtectedRoute
             path='/profile'
             isLoggedIn={isLoggedIn}
+            isLoading={isLoading}
             component={Profile}
             onUpdateUser={handleProfileUpdate}
             handleLogOut={handleLogOut}
             authWarningMessage={authWarningMessage}
+            successMessage={successMessage}
           ></ProtectedRoute>
           <Route exact path='/'>
             <Header isLoggedIn={isLoggedIn} />

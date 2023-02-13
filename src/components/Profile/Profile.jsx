@@ -1,19 +1,38 @@
 import './Profile.css'
 import { CurrentUserContext } from '../../context/CurrentUserContext'
 import { useValidation } from '../../hooks/useValidation'
-import { useContext, useRef } from 'react'
+import { useContext, useRef, useState } from 'react'
 import Header from '../Header/Header'
 
 function Profile (props) {
   const { values, handleErrors, errors, isValid } = useValidation()
+  const [сonflictErr, setConflictErr] = useState(false)
+
   const input = useRef()
+
   const currentUser = useContext(CurrentUserContext)
+
   function handleSubmit (e) {
     e.preventDefault()
-    props.onUpdateUser(
-      values.name || currentUser.name,
-      values.email || currentUser.email
-    )
+    setConflictErr(false)
+    if (values.name === currentUser.name || values.name === currentUser.name) {
+      console.log('Нельзя отправить запрос, данные совпадают')
+      setConflictErr(true)
+      setTimeout(() => {
+        setConflictErr(false)
+      }, 3000)
+    } else {
+      e.preventDefault()
+      props.onUpdateUser(
+        values.name || currentUser.name,
+        values.email || currentUser.email
+      )
+      setConflictErr(false)
+    }
+  }
+
+  function blockInput () {
+    console.log('input blocked')
   }
 
   return (
@@ -37,7 +56,7 @@ function Profile (props) {
               name='name'
               type='text'
               className='Profile__input'
-              onChange={handleErrors}
+              onChange={!props.isLoading ? handleErrors : blockInput}
               autoComplete='off'
               ref={input}
               minLength={2}
@@ -57,7 +76,7 @@ function Profile (props) {
               required
               name='email'
               className='Profile__input'
-              onChange={handleErrors}
+              onChange={!props.isLoading ? handleErrors : blockInput}
               autoComplete='off'
               ref={input}
             ></input>
@@ -73,15 +92,43 @@ function Profile (props) {
             {' '}
             Что-то пошло не так! Проверьте корректность данных!
           </span>
-          <button
-            type='submit'
-            className={`Profile__edit-button ${
-              !isValid ? `Profile__edit-button_disabled` : ''
+          <span
+            className={`Profile__success-span ${
+              !props.successMessage && `Profile__success-span_disabled`
             }`}
-            disabled={!isValid}
           >
-            Редактировать
-          </button>
+            {' '}
+            Данные профиля успешно обновлены!
+          </span>
+          <span
+            className={`Profile__сonflictErr-span ${
+              !сonflictErr && `Profile__сonflictErr-span_disabled`
+            }`}
+          >
+            {' '}
+            Нельзя изменить. Имя или email совпадают
+          </span>
+          {!props.isLoading ? (
+            <button
+              type='submit'
+              className={`Profile__edit-button ${
+                !isValid
+                  ? `Profile__edit-button_disabled`
+                  : 'Profile__edit-button'
+              }`}
+              disabled={!isValid}
+            >
+              Редактировать
+            </button>
+          ) : (
+            <button
+              type='submit'
+              className='Profile__edit-button Profile__edit-button_disabled'
+              disabled={true}
+            >
+              Редактирование...
+            </button>
+          )}
           <button
             type='button'
             className='Profile__logout'

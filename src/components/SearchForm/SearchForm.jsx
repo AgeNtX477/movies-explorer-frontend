@@ -38,7 +38,10 @@ function SearchForm (props) {
           <img alt='logo4search' src={searchlogo}></img>
         </button>
       </form>
-      <ShortCheckbox handleCheckboxSwitch={props.handleCheckboxSwitch} isSwitched={props.isSwitched}/>
+      <ShortCheckbox
+        handleCheckboxSwitch={props.handleCheckboxSwitch}
+        isSwitched={props.isSwitched}
+      />
     </section>
   )
 }

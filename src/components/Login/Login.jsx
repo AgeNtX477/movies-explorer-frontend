@@ -5,6 +5,10 @@ import { useValidation } from '../../hooks/useValidation'
 function Login (props) {
   const { values, handleErrors, errors, isValid } = useValidation()
 
+  function blockInput() {
+    console.log('input blocked')
+  }
+
   function nandleSubmit (e) {
     e.preventDefault()
     props.onLogin(values.email, values.password)
@@ -26,7 +30,7 @@ function Login (props) {
           type='email'
           name='email'
           className='Login__input'
-          onChange={handleErrors}
+          onChange={!props.isLoading ? handleErrors : blockInput}
         ></input>
         <span className='Login__span'>{errors.email}</span>
 
@@ -38,18 +42,36 @@ function Login (props) {
           value={values.password || ''}
           name='password'
           className='Login__input'
-          onChange={handleErrors}
+          onChange={!props.isLoading ? handleErrors : blockInput}
         ></input>
         <span className='Login__span'>{errors.password}</span>
-        <span className={`Login__warning-span ${
-          !props.authWarningMessage && `Login__warning-span_disabled`
-        }`}> Что-то пошло не так! Проверьте корректность данных!</span>
-        <button type='submit' className={`Login__button ${
-            !isValid ? `Login__button_disabled` : ''
+        <span
+          className={`Login__warning-span ${
+            !props.authWarningMessage && `Login__warning-span_disabled`
           }`}
-          disabled={!isValid}>
-          Войти
-        </button>
+        >
+          {' '}
+          Что-то пошло не так! Проверьте корректность данных!
+        </span>
+        {!props.isLoading ? (
+          <button
+            type='submit'
+            className={`Login__button ${
+              !isValid ? `Login__button_disabled` : 'Login__button'
+            }`}
+            disabled={!isValid}
+          >
+            Войти
+          </button>
+        ) : (
+          <button
+            type='submit'
+            className='Login__button Login__button_disabled'
+            disabled={true}
+          >
+            Вход в систему...
+          </button>
+        )}
       </form>
       <h3 className='Login__toRegister'>
         Еще не зарегистрированы?

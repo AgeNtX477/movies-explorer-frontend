@@ -10,5 +10,5 @@ export function useValidation () {
     setValues({ ...values, [name]: value })
     setIsValid(e.target.closest('form').checkValidity())
   }
-  return { values, setValues, errors, isValid, handleErrors }
+  return { values, setValues, errors, isValid, setIsValid, handleErrors }
 }
