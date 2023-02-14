@@ -274,6 +274,7 @@ function App () {
     if (isLoggedIn) {
       const movies = localStorage.getItem('movies')
       const savedMovies = localStorage.getItem('savedMovies')
+
       if (movies) {
         setMovies(JSON.parse(movies))
       }

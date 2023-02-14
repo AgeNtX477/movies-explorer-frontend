@@ -60,14 +60,19 @@ function MoviesCardList ({ isLoading, ...props }) {
             )
           })}
         </div>
-        <button
+        {props.movies.length < movieAmount && props.movies.length === 0 ? (<button
+          onClick={handleAddMoreMovies}
+          className='MoviesCardList__more-button MoviesCardList__more-button_hidden'
+        >
+          Еще
+        </button>) : (<button
           onClick={handleAddMoreMovies}
           className={`MoviesCardList__more-button ${
             props.isSavedMovies ? 'MoviesCardList__more-button_hidden' : ''
           }`}
         >
           Еще
-        </button>
+        </button>)}
       </section>
     </>
   )
