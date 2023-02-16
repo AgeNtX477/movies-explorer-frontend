@@ -259,14 +259,6 @@ function App () {
     setSavedMovies(searchResult)
   }
 
- /*  function handleCheckboxSwitch (keyword) {
-    if (movies.length || savedMovies.length > 0) {
-      setIsSwitched(!isSwitched)
-      handleSearchMovie(keyword)
-    }
-    setIsSwitched(!isSwitched)
-  } */
-
   useEffect(() => {
     if (isLoggedIn) {
       // получение данных пользователя
