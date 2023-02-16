@@ -27,7 +27,6 @@ function SearchForm (props) {
     props.handleSearchSavedMovie(inputChangeSaved)
   }
 
-
   // хук для получения текста поиска в инпуте
   useEffect(() => {
     const lastSearch = localStorage.getItem('lastSearch')
@@ -39,6 +38,27 @@ function SearchForm (props) {
       setInputChangeSaved(lastSearchSaved)
     }
   }, [])
+
+  function handleCheckboxSwitch () {
+    props.setIsSwitched(!props.isSwitched)
+  }
+
+  function handleCheckboxSwitchSaved () {
+    props.setIsSwitched(!props.isSwitched)
+  }
+
+  // эффект поиска фильмов при переключении переключателя короткометражки
+  useEffect(() => {
+    if (!props.isSavedMovies) {
+      if (props.movies.length > 0) {
+        props.handleSearchMovie(inputChange)
+      }
+    } else {
+      if (props.movies.length > 0) {
+        props.handleSearchSavedMovie(inputChangeSaved)
+      }
+    }
+  }, [props.movies.length, props.isSwitched, inputChange, inputChangeSaved])
 
   return (
     <section
@@ -60,8 +80,10 @@ function SearchForm (props) {
         </button>
       </form>
       <ShortCheckbox
-        handleCheckboxSwitch={props.handleCheckboxSwitch}
+        handleCheckboxSwitch={handleCheckboxSwitch}
+        handleCheckboxSwitchSaved={handleCheckboxSwitchSaved}
         isSwitched={props.isSwitched}
+        isSavedMovies={props.isSavedMovies}
       />
     </section>
   )

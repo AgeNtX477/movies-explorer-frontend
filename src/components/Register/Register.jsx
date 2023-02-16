@@ -5,7 +5,7 @@ import { useValidation } from '../../hooks/useValidation'
 function Register (props) {
   const { values, handleErrors, errors, isValid } = useValidation()
 
-  function blockInput() {
+  function blockInput () {
     console.log('input blocked')
   }
 

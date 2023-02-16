@@ -217,6 +217,9 @@ function App () {
           const searchResult = searchMovies(res, keyword)
           if (searchResult.length === 0) {
             setFoundNotAny(true)
+            setTimeout(() => {
+              setFoundNotAny(false)
+            }, 3000)
             setMovies([])
           } else {
             localStorage.setItem('movies', JSON.stringify(searchResult))
@@ -236,6 +239,9 @@ function App () {
         setMovies([])
         setIsLoading(false)
         setFoundNotAny(true)
+        setTimeout(() => {
+          setFoundNotAny(false)
+        }, 3000)
       } else if (searchResult.length !== 0) {
         localStorage.setItem('movies', JSON.stringify(searchResult))
         setMovies(JSON.parse(localStorage.getItem('movies')))
@@ -253,9 +259,13 @@ function App () {
     setSavedMovies(searchResult)
   }
 
-  function handleCheckboxSwitch (e) {
-    setIsSwitched(e.target.checked)
-  }
+ /*  function handleCheckboxSwitch (keyword) {
+    if (movies.length || savedMovies.length > 0) {
+      setIsSwitched(!isSwitched)
+      handleSearchMovie(keyword)
+    }
+    setIsSwitched(!isSwitched)
+  } */
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -274,7 +284,6 @@ function App () {
     if (isLoggedIn) {
       const movies = localStorage.getItem('movies')
       const savedMovies = localStorage.getItem('savedMovies')
-
       if (movies) {
         setMovies(JSON.parse(movies))
       }
@@ -336,7 +345,7 @@ function App () {
             handleCardLike={handleCardLike} // добавление в понравившиеся/лайк
             handleCardDislike={handleCardDislike} // удаление из понравившихся
             handleSearchMovie={handleSearchMovie} // поиск фильмов
-            handleCheckboxSwitch={handleCheckboxSwitch} // свитч на короткие
+            setIsSwitched={setIsSwitched}
             isSwitched={isSwitched} // состояние чек-бокса
             connectionError={connectionError}
             foundNotAny={foundNotAny}
@@ -349,7 +358,7 @@ function App () {
             movies={savedMovies}
             handleSearchSavedMovie={handleSearchSavedMovie} // поиск понравившихся фильмов
             isSwitched={isSwitched} // состояние чек-бокса
-            handleCheckboxSwitch={handleCheckboxSwitch} // свитч на короткие
+            setIsSwitched={setIsSwitched}
             handleCardDislike={handleCardDislike} // удаление фильма из сохраненки
           ></ProtectedRoute>
           <Route path='*'>

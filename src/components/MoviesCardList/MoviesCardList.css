@@ -19,11 +19,9 @@
   margin-bottom: 50px;
   display: flex;
   flex-direction: column;
-  /*  justify-content: center; */
-  /* align-items: center; */
   gap: 40px;
   /* min-height: calc(100vh - 100px);  */
-  min-height: 190px;
+  min-height: 450px;
 }
 
 .MoviesCardList__more-button {

@@ -10,8 +10,11 @@ function Movies ({ isLoading, ...props }) {
       <Header />
       <SearchForm
         handleSearchMovie={props.handleSearchMovie}
-        handleCheckboxSwitch={props.handleCheckboxSwitch}
         isSwitched={props.isSwitched}
+        handleSearchFormClick={props.handleSearchFormClick}
+        movies={props.movies}
+        setIsSwitched={props.setIsSwitched}
+        isSavedMovies={false}
       />
       <MoviesCardList
         isLoading={isLoading}
