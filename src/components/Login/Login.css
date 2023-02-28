@@ -54,6 +54,7 @@
   line-height: 1.2;
   color: #ff3055;
   padding-top: 5px;
+  min-height: 30px;
 }
 
 .Login__button {
@@ -66,13 +67,24 @@
   font-size: 14px;
   font-weight: 500;
   line-height: 1.21;
-  margin-top: 214px;
+  margin-top: 244px;
   cursor: pointer;
   transition: linear 0.3s;
 }
 
 .Login__button:hover {
   opacity: 0.8;
+}
+
+.Login__button_disabled {
+  background-color: inherit;
+  color: #3456f3;
+  border: 1px solid #3456f3;
+  cursor: auto;
+}
+
+.Login__button_disabled:hover {
+  opacity: 1;
 }
 
 .Login__toRegister {
@@ -90,6 +102,14 @@
   font-weight: 400;
   line-height: 1.2;
   margin-left: 6px;
+}
+
+.Login__warning-span {
+  color: red;
+}
+
+.Login__warning-span_disabled {
+  display: none;
 }
 
 @media screen and (max-width: 768px) {

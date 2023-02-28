@@ -4,7 +4,6 @@
   display: flex;
   justify-content: space-between;
   padding: 17px 70px 0 70px;
-  /* position: relative; */
 }
 
 .Navigation__logo {
@@ -104,13 +103,9 @@
 }
 
 .Navigation__profile-container_place_dropdown {
-  margin-top: 618px;
+  margin-top: 418px;
   padding-bottom: 90px;
 }
-
-/* .Navigation__profile-logo1 {
-
-} */
 
 .Navigation__profile-logo2 {
   position: absolute;

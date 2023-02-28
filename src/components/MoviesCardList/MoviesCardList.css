@@ -1,3 +1,16 @@
+.MovieCardList__span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 80px;
+  font-size: 15px;
+  color: red;
+}
+
+.MovieCardList__span_disabled {
+  display: none;
+}
+
 .MoviesCardList {
   padding: 15px 70px;
 }
@@ -6,10 +19,9 @@
   margin-bottom: 50px;
   display: flex;
   flex-direction: column;
-  /*  justify-content: center; */
-  /* align-items: center; */
   gap: 40px;
-  min-height: calc(100vh - 100px); 
+  /* min-height: calc(100vh - 100px);  */
+  min-height: 450px;
 }
 
 .MoviesCardList__more-button {
@@ -23,6 +35,11 @@
   font-weight: 500;
   line-height: 1.2;
   margin-bottom: 159px;
+  cursor: pointer;
+}
+
+.MoviesCardList__more-button_hidden {
+  display: none;
 }
 
 .MoviesCardList__cardlist-container_saved {

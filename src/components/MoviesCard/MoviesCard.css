@@ -26,7 +26,7 @@
   line-height: 1.2;
   margin-top: 13px;
   margin-bottom: 30px;
-  color: #A0A0A0;
+  color: #a0a0a0;
 }
 
 .MoviesCard__like-button {
@@ -105,7 +105,8 @@
     margin-bottom: 0;
   }
 
-  .MoviesCard__like-button {
+  .MoviesCard__like-button,
+  .MoviesCard__delete {
     position: absolute;
     bottom: 36px;
     right: 16px;

@@ -14,6 +14,8 @@
 .Register__form {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+  box-sizing: border-box;
 }
 
 .Register__label {
@@ -54,6 +56,8 @@
   line-height: 1.2;
   color: #ff3055;
   padding-top: 5px;
+  border-bottom: 0 solid transparent;
+  min-height: 30px;
 }
 
 .Register__button {
@@ -71,8 +75,19 @@
   transition: linear 0.3s;
 }
 
+.Register__button_disabled {
+  background-color: inherit;
+  color: #3456f3;
+  border: 1px solid #3456f3;
+  cursor: auto;
+}
+
 .Register__button:hover {
   opacity: 0.8;
+}
+
+.Register__button_disabled:hover {
+  opacity: 1;
 }
 
 .Register__toLogin {
@@ -90,6 +105,14 @@
   font-weight: 400;
   line-height: 1.2;
   margin-left: 6px;
+}
+
+.Register__warning-span {
+  color: red;
+}
+
+.Register__warning-span_disabled {
+  display: none;
 }
 
 @media screen and (max-width: 768px) {
